@@ -3,10 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <title>Rock Paper Scissors game</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Teko:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Rock Paper Scissors game!</h1>
-    <h3>This game has 5 rounds</h3>
+    <div class="container-game">
+      <h1 class="title">Rock Paper Scissors game</h1>
+      <div class="container-result">
+        <div class="container-choice">
+          <p class="choices player-choice loser">🪨</p>
+          <p class="result-title">YOU</p>
+        </div>
+        <div class="versus">X</div>
+        <div class="container-choice">
+          <p class="choices computer-choice winner">📄</p>
+          <p class="result-title">COMPUTER</p>
+        </div>
+      </div>
+      <div class="container-player">
+        <button class="btn-choice rock">🪨</button>
+        <button class="btn-choice paper">📄</button>
+        <button class="btn-choice scissors">✂️</button>
+      </div>
+      <div class="container-scores">
+        <p class="scores scores-p">
+          Player <span class="player-score">3</span>
+        </p>
+        <p class="versus">X</p>
+        <p class="scores scores-c">
+          <span class="computer-score">2</span> Computer
+        </p>
+      </div>
+    </div>
   </body>
 </html>

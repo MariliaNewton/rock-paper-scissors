@@ -76,4 +76,4 @@ function playGame() {
   Computer score: ${computerPoints}`);
 }
 
-playGame();
+// playGame();

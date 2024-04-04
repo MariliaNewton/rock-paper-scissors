@@ -1,0 +1,103 @@
+* {
+  font-family: "Bungee Spice", Teko, sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  background-color: rgba(255, 106, 0, 0.08);
+}
+
+.container-game {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+}
+
+.container-result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 0 200px;
+}
+
+.container-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choices {
+  margin: 10px 20px;
+  border: 2px solid rgb(255, 106, 0);
+  /* background-color: rgba(255, 106, 0, 0.139); */
+  /* background-color: rgba(0, 255, 94, 0.205); */
+  width: 80px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.choices.winner {
+  transition: background-color 2s ease;
+  background-color: rgba(0, 255, 94, 0.205);
+}
+
+.choices.loser {
+  transition: background-color 2s ease;
+  background-color: rgba(255, 0, 0, 0.205);
+}
+
+.container-player {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 50px 0;
+}
+
+.btn-choice {
+  font-size: 40px;
+  border: 1px solid rgb(255, 150, 75);
+  border-radius: 10px;
+  background-color: rgba(255, 106, 0, 0.139);
+  transition: background-color 0.4s ease;
+}
+
+.btn-choice:hover {
+  transition: background-color 0.4s ease;
+  cursor: pointer;
+  background-color: rgba(255, 106, 0, 0.334);
+}
+
+.container-scores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* .container-scores p {
+} */
+
+.scores {
+  width: 170px;
+  font-size: 20px;
+}
+
+.scores span {
+  font-size: 40px;
+  padding: 10px;
+}
+
+.scores-p {
+  text-align: end;
+}
