@@ -23,12 +23,13 @@
       <h1 class="title">Rock Paper Scissors game</h1>
       <div class="container-result">
         <div class="container-choice">
-          <p class="choices player-choice loser">🪨</p>
+          <p class="choices player-choice"></p>
           <p class="result-title">YOU</p>
         </div>
-        <div class="versus">X</div>
+        <div class="versus show">X</div>
+        <div class="again">🔄</div>
         <div class="container-choice">
-          <p class="choices computer-choice winner">📄</p>
+          <p class="choices computer-choice"></p>
           <p class="result-title">COMPUTER</p>
         </div>
       </div>
@@ -39,12 +40,20 @@
       </div>
       <div class="container-scores">
         <p class="scores scores-p">
-          Player <span class="player-score">3</span>
+          Player <span class="player-score">0</span>
         </p>
-        <p class="versus">X</p>
+        <p>X</p>
         <p class="scores scores-c">
-          <span class="computer-score">2</span> Computer
+          <span class="computer-score">0</span> Computer
         </p>
+      </div>
+
+      <!-- Modal play again -->
+      <div class="modal">
+        <div class="modal-content">
+          <p class="winner-reveal">You won the game!</p>
+          <button class="btn-play-again">Play again</button>
+        </div>
       </div>
     </div>
   </body>

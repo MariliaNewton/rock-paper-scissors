@@ -1,79 +1,170 @@
+const btnRock = document.querySelector(".rock");
+const btnPaper = document.querySelector(".paper");
+const btnScissors = document.querySelector(".scissors");
+const btnChoice = document.querySelectorAll(".btn-choice");
+
+const versus = document.querySelector(".versus");
+const again = document.querySelector(".again");
+
+const playerChoice = document.querySelector(".player-choice");
+const computerChoice = document.querySelector(".computer-choice");
+
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+
+const modal = document.querySelector(".modal-content");
+const btnModal = document.querySelector(".btn-play-again");
+const winnerModal = document.querySelector(".winner-reveal");
+
+let playerSelection, computerSelection;
 let playerPoints = 0;
 let computerPoints = 0;
-const choices = ["ROCK", "PAPER", "SCISSORS"];
-const rounds = 5;
+
+const emojiChoices = ["🪨", "📄", "✂️"];
 
 function getComputerChoice() {
-  return choices[Math.floor(Math.random() * 3)];
+  return emojiChoices[Math.floor(Math.random() * 3)];
 }
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return `It's a tie!`;
+    return `tie`;
   } else {
-    if (playerSelection === "ROCK") {
-      if (computerSelection === "PAPER") {
+    if (playerSelection === "🪨") {
+      if (computerSelection === "📄") {
         computerPoints++;
-        return `You lost :( ${computerSelection} beats ${playerSelection}`;
+        return `computer`;
       }
-      if (computerSelection === "SCISSORS") {
+      if (computerSelection === "✂️") {
         playerPoints++;
-        return `You won :) ${playerSelection} beats ${computerSelection}`;
+        return `player`;
       }
     }
 
-    if (playerSelection === "PAPER") {
-      if (computerSelection === "SCISSORS") {
+    if (playerSelection === "📄") {
+      if (computerSelection === "✂️") {
         computerPoints++;
-        return `You lost :( ${computerSelection} beats ${playerSelection}`;
+        return `computer`;
       }
-      if (computerSelection === "ROCK") {
+      if (computerSelection === "🪨") {
         playerPoints++;
-        return `You won :) ${playerSelection} beats ${computerSelection}`;
+        return `player`;
       }
     }
 
-    if (playerSelection === "SCISSORS") {
-      if (computerSelection === "ROCK") {
+    if (playerSelection === "✂️") {
+      if (computerSelection === "🪨") {
         computerPoints++;
-        return `You lost :( ${computerSelection} beats ${playerSelection}`;
+        return `computer`;
       }
-      if (computerSelection === "PAPER") {
+      if (computerSelection === "📄") {
         playerPoints++;
-        return `You won :) ${playerSelection} beats ${computerSelection}`;
+        return `player`;
       }
     }
   }
 }
+
+btnModal.addEventListener("click", function () {
+  playerPoints = 0;
+  computerPoints = 0;
+  playerScore.textContent = playerPoints;
+  computerScore.textContent = computerPoints;
+  restart();
+  toggleVersusAgain();
+  toggleBtnChoice();
+  modal.classList.remove("visible");
+});
 
 function playGame() {
-  for (let round = 1; round <= rounds; round++) {
-    playerSelection = prompt(
-      `Round ${round}! Choose between Rock, Paper or Scissors
-      Your score: ${playerPoints}
-      Computer score: ${computerPoints}`
-    ).toUpperCase();
+  winner = playRound(playerSelection, computerSelection);
 
-    if (choices.includes(playerSelection)) {
-      alert(playRound(playerSelection, getComputerChoice()));
-    } else {
-      alert(`You need to choose a valid input!`);
-      round--;
-    }
+  if (winner === "player") {
+    playerChoice.classList.add("winner");
+    computerChoice.classList.add("loser");
+  } else if (winner === "computer") {
+    playerChoice.classList.add("loser");
+    computerChoice.classList.add("winner");
   }
 
-  if (playerPoints > computerPoints)
-    alert(`Congrats! You won the game!
-  Your score: ${playerPoints}
-  Computer score: ${computerPoints}`);
-  else if (computerPoints > playerPoints)
-    alert(`You lost the game :(
-  Your score: ${playerPoints}
-  Computer score: ${computerPoints}`);
-  else if (computerPoints === playerPoints)
-    alert(`It's a tie, no one wins!
-  Your score: ${playerPoints}
-  Computer score: ${computerPoints}`);
+  toggleVersusAgain();
+
+  setTimeout(() => {
+    playerScore.textContent = playerPoints;
+    computerScore.textContent = computerPoints;
+  }, 1000);
+
+  setTimeout(() => {
+    if (playerPoints >= 2) {
+      winnerModal.textContent = "You won the game!";
+      modal.classList.add("visible");
+      playerPoints = 0;
+      computerPoints = 0;
+    } else if (computerPoints >= 2) {
+      winnerModal.textContent = "You lost the game!";
+      modal.classList.add("visible");
+      playerPoints = 0;
+      computerPoints = 0;
+    }
+  }, 5000);
 }
 
-// playGame();
+btnRock.addEventListener("click", function () {
+  playerSelection = btnRock.textContent;
+  computerSelection = getComputerChoice();
+
+  playerChoice.textContent = playerSelection;
+  computerChoice.textContent = computerSelection;
+
+  playGame();
+  toggleBtnChoice();
+});
+btnPaper.addEventListener("click", function () {
+  playerSelection = btnPaper.textContent;
+  computerSelection = getComputerChoice();
+
+  playerChoice.textContent = playerSelection;
+  computerChoice.textContent = computerSelection;
+
+  playGame();
+  toggleBtnChoice();
+});
+btnScissors.addEventListener("click", function () {
+  playerSelection = btnScissors.textContent;
+  computerSelection = getComputerChoice();
+
+  playerChoice.textContent = playerSelection;
+  computerChoice.textContent = computerSelection;
+
+  playGame();
+  toggleBtnChoice();
+});
+
+again.addEventListener("click", btnAgain);
+
+function toggleBtnChoice() {
+  btnChoice.forEach((btn) =>
+    btn.disabled ? (btn.disabled = false) : (btn.disabled = true)
+  );
+}
+
+function toggleVersusAgain() {
+  again.classList.toggle("show");
+  versus.classList.toggle("show");
+}
+
+function restart() {
+  playerChoice.textContent = "";
+  computerChoice.textContent = "";
+
+  playerChoice.classList.remove("winner");
+  playerChoice.classList.remove("loser");
+  computerChoice.classList.remove("winner");
+  computerChoice.classList.remove("loser");
+}
+
+function btnAgain() {
+  toggleVersusAgain();
+  toggleBtnChoice();
+  restart();
+}
