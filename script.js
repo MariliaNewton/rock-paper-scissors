@@ -21,6 +21,7 @@ let playerPoints = 0;
 let computerPoints = 0;
 
 const emojiChoices = ["🪨", "📄", "✂️"];
+const rounds = 5;
 
 function getComputerChoice() {
   return emojiChoices[Math.floor(Math.random() * 3)];
@@ -95,12 +96,12 @@ function playGame() {
   }, 1000);
 
   setTimeout(() => {
-    if (playerPoints >= 2) {
+    if (playerPoints >= rounds) {
       winnerModal.textContent = "You won the game!";
       modal.classList.add("visible");
       playerPoints = 0;
       computerPoints = 0;
-    } else if (computerPoints >= 2) {
+    } else if (computerPoints >= rounds) {
       winnerModal.textContent = "You lost the game!";
       modal.classList.add("visible");
       playerPoints = 0;
